@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="color-scheme" content="only light">
+  <!-- ═══════════════════════════════════════════
+       ЗАГОЛОВОК САЙТА
+  ═══════════════════════════════════════════ -->
+  <title>Кирилл & Ксения · 08.08.2026</title>
+
+  <!-- Google Fonts — элегантная типографика -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- EmailJS SDK — для отправки формы -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║   ЭКРАН ПРИВЕТСТВИЯ — КОНВЕРТ            ║
+     ╚══════════════════════════════════════════╝ -->
+<div id="envelope-screen" class="envelope-screen">
+  <!-- ─── Конверт — полноэкранный ─────────────────────────── -->
+  <div class="env-outer">
+
+    <!-- Фон конверта (бумага) -->
+    <div class="env-paper"></div>
+
+    <!-- Левый треугольный клапан -->
+    <div class="env-flap-left"></div>
+    <!-- Правый треугольный клапан -->
+    <div class="env-flap-right"></div>
+    <!-- Нижний треугольный клапан -->
+    <div class="env-flap-bottom"></div>
+    <!-- Верхний клапан (закрытый, направлен вниз) -->
+    <div class="env-flap-top"></div>
+
+    <!-- Содержимое поверх клапанов -->
+    <div class="env-content">
+      <p class="env-pre-title">Вы приглашены на свадьбу</p>
+      <!-- ═══ ИМЕНА ПАРЫ ═══ -->
+      <h1 class="env-title">Кирилл <span class="env-amp">&amp;</span> Ксения</h1>
+      <p class="env-script">The wedding day</p>
+
+      <!-- Восковая печать — кнопка открытия -->
+      <button class="env-seal-btn" id="open-btn" aria-label="Открыть приглашение">
+        <img src="assets/wax-seal.png" alt="Нажмите на печать" class="seal-img">
+      </button>
+      <p class="env-hint">нажмите на печать</p>
+
+      <p class="env-note">Это приглашение адресовано Вам не случайно!<br>В этот особенный день нам важно,<br>чтобы Вы были рядом с нами!</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════╗
+     ║   ОСНОВНОЙ САЙТ                          ║
+     ╚══════════════════════════════════════════╝ -->
+<div id="main-site" class="main-site hidden">
+
+  <!-- ───── ФОНОВАЯ МУЗЫКА ───────────────────── -->
+  <audio id="bg-music" loop preload="none">
+    <source src="assets/perfect.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" id="music-btn" title="Музыка">
+    <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+  </button>
+
+  <!-- ───── НАВИГАЦИЯ ───────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <!-- ═══ ИМЕНА ПАРЫ В НАВИГАЦИИ ═══ -->
+      <a class="nav-logo" href="#hero">K & K</a>
+      <ul class="nav-links">
+        <li><a href="#invite">О нас</a></li>
+        <li><a href="#locations">Локации</a></li>
+        <li><a href="#timing">Тайминг</a></li>
+        <li><a href="#dresscode">Дресс-код</a></li>
+        <li><a href="#rsvp">Анкета</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ───── HERO ────────────────────────────── -->
+  <section class="section hero-section" id="hero">
+    <!-- Декоративные ветки (SVG inline) -->
+    <div class="hero-decor hero-decor-tl" aria-hidden="true">
+      <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 270 Q60 200 90 150 Q110 100 80 40" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M90 150 Q130 130 160 90" stroke="#B89671" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M60 200 Q100 185 130 160" stroke="#B89671" stroke-width="1" fill="none" opacity="0.5"/>
+        <ellipse cx="80" cy="40" rx="8" ry="12" fill="#D4B896" opacity="0.5" transform="rotate(-30 80 40)"/>
+        <ellipse cx="160" cy="90" rx="6" ry="10" fill="#D4B896" opacity="0.4" transform="rotate(20 160 90)"/>
+        <ellipse cx="130" cy="160" rx="5" ry="8" fill="#D4B896" opacity="0.4" transform="rotate(-10 130 160)"/>
+        <circle cx="100" cy="120" r="3" fill="#D4B896" opacity="0.5"/>
+        <circle cx="70" cy="180" r="2.5" fill="#D4B896" opacity="0.4"/>
+        <circle cx="145" cy="75" r="2" fill="#D4B896" opacity="0.45"/>
+      </svg>
+    </div>
+    <div class="hero-decor hero-decor-tr" aria-hidden="true">
+      <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+        <path d="M10 270 Q60 200 90 150 Q110 100 80 40" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M90 150 Q130 130 160 90" stroke="#B89671" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M60 200 Q100 185 130 160" stroke="#B89671" stroke-width="1" fill="none" opacity="0.5"/>
+        <ellipse cx="80" cy="40" rx="8" ry="12" fill="#D4B896" opacity="0.5" transform="rotate(-30 80 40)"/>
+        <ellipse cx="160" cy="90" rx="6" ry="10" fill="#D4B896" opacity="0.4" transform="rotate(20 160 90)"/>
+        <ellipse cx="130" cy="160" rx="5" ry="8" fill="#D4B896" opacity="0.4" transform="rotate(-10 130 160)"/>
+        <circle cx="100" cy="120" r="3" fill="#D4B896" opacity="0.5"/>
+        <circle cx="70" cy="180" r="2.5" fill="#D4B896" opacity="0.4"/>
+        <circle cx="145" cy="75" r="2" fill="#D4B896" opacity="0.45"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner">
+      <p class="hero-pre fade-up">Свадьба</p>
+      <!-- ═══ ИМЕНА ПАРЫ ═══ -->
+      <h1 class="hero-names fade-up delay-1">Кирилл <span class="amp">&amp;</span> Ксения</h1>
+      <div class="hero-divider fade-up delay-2">
+        <span class="divider-line"></span>
+        <svg class="divider-ring" viewBox="0 0 40 20" fill="none"><circle cx="12" cy="10" r="8" stroke="#B89671" stroke-width="1"/><circle cx="28" cy="10" r="8" stroke="#B89671" stroke-width="1"/></svg>
+        <span class="divider-line"></span>
+      </div>
+      <!-- ═══ ДАТА ═══ -->
+      <p class="hero-date fade-up delay-3">08 · 08 · 2026</p>
+      <p class="hero-city fade-up delay-4">Минск, Беларусь</p>
+      <a href="#invite" class="btn fade-up delay-5">Смотреть приглашение</a>
+    </div>
+
+    <!-- Лепестки -->
+    <div class="petals" aria-hidden="true">
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div>
+    </div>
+  </section>
+
+  <!-- ───── ПРИГЛАШЕНИЕ ─────────────────────── -->
+  <section class="section invite-section" id="invite">
+    <div class="container">
+      <div class="section-label fade-up">Приглашение</div>
+      <h2 class="section-title fade-up"><em>Save the date!</em></h2>
+      <div class="invite-text fade-up">
+        <p class="invite-greeting">Дорогие гости!</p>
+        <!-- ═══ ТЕКСТ ПРИГЛАШЕНИЯ ═══ -->
+        <p>Это официальное приглашение на нашу свадьбу!</p>
+        <p>Один день в этом году будет для нас особенным, мы хотим провести его в кругу самых близких людей. Будем рады видеть Вас в этот день рядом с нами!</p>
+      </div>
+
+      <!-- Календарь августа 2026 -->
+      <div class="calendar-wrap fade-up">
+        <div class="calendar">
+          <div class="cal-header">
+            <span class="cal-month">Август</span>
+            <span class="cal-year">2026</span>
+          </div>
+          <div class="cal-grid">
+            <div class="cal-day-name">Пн</div>
+            <div class="cal-day-name">Вт</div>
+            <div class="cal-day-name">Ср</div>
+            <div class="cal-day-name">Чт</div>
+            <div class="cal-day-name">Пт</div>
+            <div class="cal-day-name">Сб</div>
+            <div class="cal-day-name">Вс</div>
+            <!-- Август 2026 начинается в субботу (6-й день) -->
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day">1</div>
+            <div class="cal-day">2</div>
+            <div class="cal-day">3</div>
+            <div class="cal-day">4</div>
+            <div class="cal-day">5</div>
+            <div class="cal-day">6</div>
+            <div class="cal-day">7</div>
+            <!-- ═══ ДАТА СВАДЬБЫ 08 — СУББОТА ═══ -->
+            <div class="cal-day wedding-day">
+              <span class="day-num">8</span>
+              <svg class="heart-svg" viewBox="0 0 60 60" fill="none">
+                <path d="M30 50 C15 38 4 30 4 18 C4 10 10 4 18 4 C22 4 27 7 30 11 C33 7 38 4 42 4 C50 4 56 10 56 18 C56 30 45 38 30 50Z" stroke="#B89671" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <div class="cal-day">9</div>
+            <div class="cal-day">10</div>
+            <div class="cal-day">11</div>
+            <div class="cal-day">12</div>
+            <div class="cal-day">13</div>
+            <div class="cal-day">14</div>
+            <div class="cal-day">15</div>
+            <div class="cal-day">16</div>
+            <div class="cal-day">17</div>
+            <div class="cal-day">18</div>
+            <div class="cal-day">19</div>
+            <div class="cal-day">20</div>
+            <div class="cal-day">21</div>
+            <div class="cal-day">22</div>
+            <div class="cal-day">23</div>
+            <div class="cal-day">24</div>
+            <div class="cal-day">25</div>
+            <div class="cal-day">26</div>
+            <div class="cal-day">27</div>
+            <div class="cal-day">28</div>
+            <div class="cal-day">29</div>
+            <div class="cal-day">30</div>
+            <div class="cal-day">31</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Декор веточки -->
+    <div class="section-decor-br" aria-hidden="true">
+      <svg viewBox="0 0 180 180" fill="none">
+        <path d="M10 170 Q70 120 100 70 Q120 30 160 10" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M100 70 Q140 80 160 60" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M60 120 Q90 110 110 90" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="160" cy="10" rx="7" ry="11" fill="#D4B896" opacity="0.45" transform="rotate(10 160 10)"/>
+        <ellipse cx="160" cy="60" rx="5" ry="8" fill="#D4B896" opacity="0.4" transform="rotate(-20 160 60)"/>
+        <circle cx="120" cy="50" r="3" fill="#D4B896" opacity="0.4"/>
+        <circle cx="90" cy="100" r="2.5" fill="#D4B896" opacity="0.4"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ───── ЛОКАЦИИ ─────────────────────────── -->
+  <section class="section locations-section bg-soft" id="locations">
+    <div class="container">
+      <div class="section-label fade-up">Локация</div>
+      <h2 class="section-title fade-up"><em>Save the places!</em></h2>
+
+      <div class="locations-grid">
+        <!-- Локация 1: ЗАГС -->
+        <div class="location-card fade-up">
+          <div class="location-img-wrap">
+            <!-- ═══ ИЗОБРАЖЕНИЕ ЗАГС ═══ -->
+            <img src="assets/zags.jpg" alt="ЗАГС Заводского района" loading="lazy">
+            <div class="location-img-overlay"></div>
+          </div>
+          <div class="location-info">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#B89671"/></svg>
+            </div>
+            <!-- ═══ НАЗВАНИЕ И АДРЕС ЗАГС ═══ -->
+            <h3 class="location-name">ЗАГС Заводского района г. Минска</h3>
+            <p class="location-address">ул. Голодеда, 21, к. 1</p>
+            <!-- ═══ ССЫЛКА НА КАРТУ ЗАГС ═══ -->
+            <a href="https://yandex.by/maps/-/CPx5aJjT" target="_blank" rel="noopener" class="btn btn-outline">Как добраться</a>
+          </div>
+        </div>
+
+        <!-- Локация 2: Усадьба -->
+        <div class="location-card fade-up delay-1">
+          <div class="location-img-wrap">
+            <!-- ═══ ИЗОБРАЖЕНИЕ УСАДЬБЫ ═══ -->
+            <img src="assets/usadba.jpg" alt="Усадьба Ласточкино гнездо" loading="lazy">
+            <div class="location-img-overlay"></div>
+          </div>
+          <div class="location-info">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#B89671"/></svg>
+            </div>
+            <!-- ═══ НАЗВАНИЕ И АДРЕС УСАДЬБЫ ═══ -->
+            <h3 class="location-name">Усадьба Ласточкино гнездо</h3>
+            <p class="location-address">Логойский район, д. Сухая Гора, ул. Радужная, 4</p>
+            <!-- ═══ ССЫЛКА НА КАРТУ УСАДЬБЫ ═══ -->
+            <a href="https://yandex.by/maps/-/CPx5eXlD" target="_blank" rel="noopener" class="btn btn-outline">Как добраться</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── ТАЙМИНГ ─────────────────────────── -->
+  <section class="section timing-section" id="timing">
+    <div class="timing-decor-tl" aria-hidden="true">
+      <svg viewBox="0 0 200 300" fill="none">
+        <path d="M180 290 Q120 220 90 160 Q60 100 80 20" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M90 160 Q50 140 20 100" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="80" cy="20" rx="7" ry="11" fill="#D4B896" opacity="0.45" transform="rotate(-20 80 20)"/>
+        <ellipse cx="20" cy="100" rx="5" ry="8" fill="#D4B896" opacity="0.4" transform="rotate(15 20 100)"/>
+        <circle cx="50" cy="130" r="3" fill="#D4B896" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="section-label fade-up">Тайминг</div>
+      <h2 class="section-title fade-up"><em>Of the day</em></h2>
+      <div class="timeline">
+        <!-- ═══ ТАЙМИНГ ═══ -->
+        <div class="timeline-item fade-up">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-desc">Церемония регистрации</div>
+        </div>
+        <div class="timeline-item fade-up delay-1">
+          <div class="timeline-time">14:00</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-desc">Заезд в Усадьбу</div>
+        </div>
+        <div class="timeline-item fade-up delay-2">
+          <div class="timeline-time">15:30</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-desc">Праздничный банкет</div>
+        </div>
+        <div class="timeline-item fade-up delay-3">
+          <div class="timeline-time">00:00</div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-desc">Завершение вечера</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── ДРЕСС-КОД ───────────────────────── -->
+  <section class="section dresscode-section" id="dresscode">
+    <div class="container">
+      <div class="section-label fade-up">Дресс-код</div>
+      <h2 class="section-title fade-up"><em>Dress code</em></h2>
+      <!-- ═══ ТЕКСТ ДРЕСС-КОДА ═══ -->
+      <p class="dresscode-text fade-up">Мы очень ждём и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
+
+      <!-- Цветовая палитра дресс-кода -->
+      <div class="dresscode-palette fade-up">
+        <div class="palette-swatch" style="background:#f3ede3;" title="Молочный / Ivory"></div>
+        <div class="palette-swatch" style="background:#E8E0CC;" title="Кремовый / Cream"></div>
+        <div class="palette-swatch" style="background:#B5C4A0;" title="Шалфей / Sage"></div>
+        <div class="palette-swatch" style="background:#7A9B6A;" title="Оливковый / Olive"></div>
+        <div class="palette-swatch" style="background:#3D6E4E;" title="Лесной / Forest"></div>
+        <div class="palette-swatch" style="background:#5C3A1E;" title="Шоколад / Chocolate"></div>
+        <div class="palette-swatch" style="background:#241307;" title="Темный шоколад / Dark chocolate"></div>
+      </div>
+
+      <div class="dresscode-grid">
+        <!-- Ladies -->
+        <div class="dresscode-card fade-up">
+          <div class="dresscode-card-label"><em>Ladies</em></div>
+          <!-- ═══ ИЗОБРАЖЕНИЕ НАРЯДОВ ДЛЯ ДАМ ═══ -->
+          <div class="dresscode-img-wrap">
+            <img src="assets/dresscode-ladies.jpg" alt="Наряды для дам" loading="lazy">
+          </div>
+          <!-- ═══ ОПИСАНИЕ НАРЯДОВ ДЛЯ ДАМ ═══ -->
+          <ul class="dresscode-list">
+            <li>Вечерние и коктейльные платья</li>
+            <li>Шалфей, оливковый, лесной зелёный</li>
+            <li>Молочный и кремовый</li>
+            <li>Шоколадный и тауп</li>
+          </ul>
+        </div>
+        <!-- Gents -->
+        <div class="dresscode-card fade-up delay-1">
+          <div class="dresscode-card-label"><em>Gents</em></div>
+          <!-- ═══ ИЗОБРАЖЕНИЕ НАРЯДОВ ДЛЯ МУЖЧИН ═══ -->
+          <div class="dresscode-img-wrap">
+            <img src="assets/dresscode-gents.jpg" alt="Наряды для мужчин" loading="lazy">
+          </div>
+          <!-- ═══ ОПИСАНИЕ НАРЯДОВ ДЛЯ МУЖЧИН ═══ -->
+          <ul class="dresscode-list">
+            <li>Классический костюм или смокинг</li>
+            <li>Оливковый или тёмно-зелёный костюм</li>
+            <li>Льняной беж / кремовый костюм</li>
+            <li>Белая рубашка, коричневые туфли</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── ТАЙМЕР ОБРАТНОГО ОТСЧЁТА ───────── -->
+  <section class="section timer-section" id="timer">
+    <div class="timer-bg-decor" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-label fade-up light">До свадьбы осталось</div>
+      <h2 class="section-title light fade-up"><em>Waiting for you!</em></h2>
+      <div class="countdown fade-up" id="countdown">
+        <div class="countdown-item">
+          <span class="countdown-num" id="days">00</span>
+          <span class="countdown-label">дней</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="hours">00</span>
+          <span class="countdown-label">часов</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="minutes">00</span>
+          <span class="countdown-label">минут</span>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="seconds">00</span>
+          <span class="countdown-label">секунд</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── ПОЖЕЛАНИЯ ───────────────────────── -->
+  <section class="section wishes-section" id="wishes">
+    <div class="container">
+      <div class="section-label fade-up">Пожелания</div>
+      <h2 class="section-title fade-up"><em>Our wishes</em></h2>
+      <div class="wishes-card fade-up">
+        <div class="wishes-icon" aria-hidden="true">
+          <svg viewBox="0 0 60 60" fill="none">
+            <path d="M30 52 C12 38 3 28 3 16 C3 8 9 2 17 2 C21 2 26 5 30 10 C34 5 39 2 43 2 C51 2 57 8 57 16 C57 28 48 38 30 52Z" stroke="#B89671" stroke-width="1.5" fill="rgba(184,150,113,0.08)"/>
+          </svg>
+        </div>
+        <!-- ═══ ТЕКСТ ПОЖЕЛАНИЙ ═══ -->
+        <p>Мы ценим традиции, но, к сожалению, не сможем в полной мере насладиться красотой цветов. Поэтому будем рады любой другой альтернативе – например, бутылочке хорошего алкоголя</p>
+      </div>
+    </div>
+
+    <div class="section-decor-bl" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none">
+        <path d="M190 10 Q130 70 100 110 Q70 150 20 190" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M100 110 Q60 100 30 80" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="20" cy="190" rx="7" ry="11" fill="#D4B896" opacity="0.45" transform="rotate(30 20 190)"/>
+        <ellipse cx="30" cy="80" rx="5" ry="8" fill="#D4B896" opacity="0.4" transform="rotate(-10 30 80)"/>
+        <circle cx="60" cy="120" r="3" fill="#D4B896" opacity="0.4"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ───── КОНТАКТЫ ────────────────────────── -->
+  <section class="section contacts-section bg-soft" id="contacts">
+    <div class="container">
+      <div class="section-label fade-up">Контакты</div>
+      <h2 class="section-title fade-up"><em>Contact us</em></h2>
+      <!-- ═══ ТЕКСТ КОНТАКТОВ ═══ -->
+      <p class="contacts-text fade-up">По всем вопросам, связанным с мероприятием, Вы можете связаться с нами</p>
+      <div class="contacts-grid">
+        <div class="contact-card fade-up">
+          <div class="contact-role">Жених</div>
+          <!-- ═══ ИМЯ И ТЕЛЕФОН ЖЕНИХА ═══ -->
+          <div class="contact-name">Кирилл</div>
+          <a href="tel:+375298334417" class="contact-phone">+375 (29) 833-44-17</a>
+          <a href="tel:+375298334417" class="btn btn-outline contact-btn">Позвонить</a>
+        </div>
+        <div class="contact-card fade-up delay-1">
+          <div class="contact-role">Невеста</div>
+          <!-- ═══ ИМЯ И ТЕЛЕФОН НЕВЕСТЫ ═══ -->
+          <div class="contact-name">Ксения</div>
+          <a href="tel:+375295036611" class="contact-phone">+375 (29) 503-66-11</a>
+          <a href="tel:+375295036611" class="btn btn-outline contact-btn">Позвонить</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── RSVP / АНКЕТА ГОСТЯ ─────────────── -->
+  <section class="section rsvp-section" id="rsvp">
+    <div class="rsvp-decor-tr" aria-hidden="true">
+      <svg viewBox="0 0 200 280" fill="none" style="transform:scaleX(-1)">
+        <path d="M10 270 Q70 200 100 140 Q120 80 90 20" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M100 140 Q150 120 170 80" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M70 190 Q110 175 140 150" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="90" cy="20" rx="7" ry="11" fill="#D4B896" opacity="0.45"/>
+        <ellipse cx="170" cy="80" rx="5" ry="8" fill="#D4B896" opacity="0.4"/>
+        <circle cx="130" cy="100" r="3" fill="#D4B896" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="section-label fade-up">Анкета гостя</div>
+      <!-- ═══ СРОК ПОДТВЕРЖДЕНИЯ ═══ -->
+      <p class="rsvp-deadline fade-up">Пожалуйста, подтвердите Ваше присутствие на нашей свадьбе до <strong>08.07.2026</strong></p>
+
+      <form class="rsvp-form fade-up" id="rsvp-form" novalidate>
+        <!-- Имя -->
+        <div class="form-group">
+          <label class="form-label" for="guest-name">Ваше имя и фамилия</label>
+          <!-- ═══ Если будете с парой или семьей, внесите все имена ═══ -->
+          <p class="form-hint">Если вы будете с парой или семьей, то внесите все имена</p>
+          <input type="text" id="guest-name" name="guest_name" class="form-input" placeholder="Имя и фамилия" required>
+        </div>
+
+        <!-- Присутствие -->
+        <div class="form-group">
+          <label class="form-label">Планируете ли вы присутствовать?</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="Да, с удовольствием приду!" required>
+              <span class="radio-custom"></span>
+              <span>С удовольствием приду!</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="К сожалению, не смогу">
+              <span class="radio-custom"></span>
+              <span>К сожалению, не смогу</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Предпочтения -->
+        <div class="form-group">
+          <label class="form-label">Ваши предпочтения</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Шампанское">
+              <span class="checkbox-custom"></span>
+              <span>Шампанское</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Белое вино">
+              <span class="checkbox-custom"></span>
+              <span>Белое вино</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Красное вино">
+              <span class="checkbox-custom"></span>
+              <span>Красное вино</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Коньяк">
+              <span class="checkbox-custom"></span>
+              <span>Коньяк</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Виски">
+              <span class="checkbox-custom"></span>
+              <span>Виски</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Водка">
+              <span class="checkbox-custom"></span>
+              <span>Водка</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="drinks" value="Не пью алкоголь">
+              <span class="checkbox-custom"></span>
+              <span>Не пью алкоголь</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Комментарий -->
+        <div class="form-group">
+          <label class="form-label" for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" class="form-input form-textarea" placeholder="Ваш комментарий (необязательно)" rows="4"></textarea>
+        </div>
+
+        <!-- Кнопка отправки -->
+        <button type="submit" class="btn btn-submit" id="submit-btn">Подтвердить</button>
+
+        <!-- Сообщения -->
+        <div class="form-success hidden" id="form-success">
+          <div class="success-icon">
+            <svg viewBox="0 0 60 60" fill="none"><path d="M30 52 C12 38 3 28 3 16 C3 8 9 2 17 2 C21 2 26 5 30 10 C34 5 39 2 43 2 C51 2 57 8 57 16 C57 28 48 38 30 52Z" fill="rgba(184,150,113,0.15)" stroke="#B89671" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Спасибо!</h3>
+          <p>Ваш ответ получен. Мы ждём вас!</p>
+        </div>
+        <div class="form-error hidden" id="form-error">
+          <p>Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь с нами напрямую</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ───── ПРОЩАЛЬНЫЙ БЛОК ─────────────────── -->
+  <footer class="section footer-section" id="footer">
+    <div class="footer-decor-tl" aria-hidden="true">
+      <svg viewBox="0 0 300 300" fill="none">
+        <path d="M10 290 Q80 220 120 160 Q150 100 130 30" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M120 160 Q170 145 200 110" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M80 210 Q120 200 150 175" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="130" cy="30" rx="8" ry="12" fill="#D4B896" opacity="0.4"/>
+        <ellipse cx="200" cy="110" rx="6" ry="9" fill="#D4B896" opacity="0.4"/>
+        <circle cx="155" cy="135" r="3" fill="#D4B896" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="footer-decor-br" aria-hidden="true">
+      <svg viewBox="0 0 300 300" fill="none" style="transform:scale(-1)">
+        <path d="M10 290 Q80 220 120 160 Q150 100 130 30" stroke="#B89671" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M120 160 Q170 145 200 110" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M80 210 Q120 200 150 175" stroke="#B89671" stroke-width="1" fill="none" opacity="0.4"/>
+        <ellipse cx="130" cy="30" rx="8" ry="12" fill="#D4B896" opacity="0.4"/>
+        <ellipse cx="200" cy="110" rx="6" ry="9" fill="#D4B896" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="footer-inner fade-up">
+        <p class="footer-farewell">До скорой встречи!</p>
+        <p class="footer-love">С любовью</p>
+        <!-- ═══ ИМЕНА ПАРЫ ═══ -->
+        <h2 class="footer-names">Кирилл <span class="amp">&amp;</span> Ксения</h2>
+        <!-- ═══ ДАТА ═══ -->
+        <p class="footer-date">08 · 08 · 2026</p>
+        <div class="footer-hearts" aria-hidden="true">
+          <svg viewBox="0 0 120 40" fill="none">
+            <path d="M20 32 C10 24 2 18 2 10 C2 5 6 2 10 2 C13 2 16 4 20 7 C24 4 27 2 30 2 C34 2 38 5 38 10 C38 18 30 24 20 32Z" fill="rgba(184,150,113,0.3)" stroke="#B89671" stroke-width="1"/>
+            <path d="M60 32 C50 24 42 18 42 10 C42 5 46 2 50 2 C53 2 56 4 60 7 C64 4 67 2 70 2 C74 2 78 5 78 10 C78 18 70 24 60 32Z" fill="rgba(184,150,113,0.2)" stroke="#B89671" stroke-width="1"/>
+            <path d="M100 32 C90 24 82 18 82 10 C82 5 86 2 90 2 C93 2 96 4 100 7 C104 4 107 2 110 2 C114 2 118 5 118 10 C118 18 110 24 100 32Z" fill="rgba(184,150,113,0.3)" stroke="#B89671" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /main-site -->
+
+<script src="script.js"></script>
+</body>
+</html>
