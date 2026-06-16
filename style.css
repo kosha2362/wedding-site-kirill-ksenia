@@ -1619,7 +1619,8 @@ img { display: block; max-width: 100%; height: auto; }
   margin: 4px auto;
   width: clamp(90px, 20vw, 140px);
   height: clamp(90px, 20vw, 140px);
-  border-radius: 0; /* прозрачный PNG не обрезаем */
+  border-radius: 50%; /* прозрачный PNG не обрезаем */
+  overflow: hidden;
   transition: transform 0.35s var(--ease-out), filter 0.35s;
   filter: drop-shadow(0 6px 18px rgba(100, 20, 20, 0.45));
 }
@@ -1637,7 +1638,7 @@ img { display: block; max-width: 100%; height: auto; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 0;  /* PNG уже с прозрачным фоном */
+  border-radius: 50%;  /* PNG уже с прозрачным фоном */
   display: block;
 }
 
